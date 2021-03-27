@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>预约页面</title>
+</head>
+<style>
+    body {
+        background-color: lightblue;
+    }
+
+    .header {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 10px;
+        position: absolute;
+        bottom: 5px;
+        right: 50%;
+    }
+
+    ::before {
+        content: "";
+        position: fixed;
+        top: -10px;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);
+        -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);
+        z-index: 100;
+    }
+
+</style>
+<h1 class="header">先锋维修预约系统</h1>
+<body>
+请选择你要预约的项目（tips：还有{{ advanced }}个名额，还有{{ discrete }}个名额）
+<form method="post" action="/tip">
+    {% csrf_token %}
+    项目：
+    <select name="subject">
+        <option>硬件系统维修</option>
+        <option>软件系统维修</option>
+    </select>
+
+    时间：
+    <select name="time">
+        <option>9:00</option>
+        <option>11:00</option>
+        <option>14:00</option>
+        <option>16:00</option>
+    </select>
+
+    <br>
+    请输入你的姓名
+    <input type="text"
+           placeholder="请输入汉字"
+           onkeyup="value=value.replace(/[^\u4e00-\u9fa5]/g,'')"
+           required="required"
+           name="name">
+    请输入你的学号
+    <input type="number"
+           placeholder="请输入数字"
+           required="required"
+           name="number">
+    <input type="submit" value="提交">
+</form>
+<a href="/index">
+    <button>返回首页</button>
+</a>
+</body>
+<h2 class="footer">NEU</h2>
+</html>
